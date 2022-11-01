@@ -41,6 +41,11 @@ class API(object):
         self.show_header = False
         self.proxies = None
         self.session = requests.Session()
+
+        # added by hamed
+        adapter = requests.adapters.HTTPAdapter(pool_connections=100, pool_maxsize=100)
+        self.session.mount("https://", adapter)
+
         self.session.headers.update(
             {
                 "Content-Type": "application/json;charset=utf-8",
